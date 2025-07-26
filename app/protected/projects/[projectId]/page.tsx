@@ -87,7 +87,7 @@ export default function ProjectDetailPage() {
   }
 
   const deleteNote = async (noteId: number) => {
-  const { data, error } = await supabase.from('notes').delete().eq('id', noteId)
+  const { error } = await supabase.from('notes').delete().eq('id', noteId)
   if (error) console.error('Error deleting note:', error)
   else {
     refreshNotes()
@@ -301,7 +301,7 @@ export default function ProjectDetailPage() {
               className="absolute top-1 right-1 text-gray-600 hover:text-gray-900">
                 <X size={16} />
                 </button>
-                
+
               {/* Note Content */}
               <div className = "whitespace-pre-wrap">
                 {n.content}
