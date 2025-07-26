@@ -1,3 +1,4 @@
+// Successful sign-up page
 import {
   Card,
   CardContent,
