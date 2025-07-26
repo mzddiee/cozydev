@@ -1,5 +1,4 @@
 // Home page elements such as navbar and sub text
-import { DeployButton } from "@/components/deploy-button";
 import { EnvVarWarning } from "@/components/env-var-warning";
 import { AuthButton } from "@/components/auth-button";
 import { Hero } from "@/components/hero";
@@ -15,7 +14,6 @@ export default function Home() {
             <div className="flex gap-5 items-center font-semibold">
               <Link href={"/"}>CS Girlies Hackathon</Link>
               <div className="flex items-center gap-2">
-                <DeployButton />
               </div>
             </div>
             {!hasEnvVars ? <EnvVarWarning /> : <AuthButton />}
