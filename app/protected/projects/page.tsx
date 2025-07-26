@@ -14,6 +14,7 @@ export default function ProtectedPage() {
 
   const [projects, setProjects] = useState<any[] | null>(null)
   const [editingProject, setEditingProject] = useState<any | null>(null)
+  const [confirmingDeleteId, setConfirmingDeleteId] = useState<number | null>(null)
   const [showForm, setShowForm] = useState(false)
 
   const router = useRouter()
@@ -152,24 +153,36 @@ export default function ProtectedPage() {
                 <h3 className="text-lg font-semibold">{project.title}</h3>
                 <p className="text-sm text-muted-foreground">{project.description}</p>
                 <p className="text-xs italic">Status: {project.status}</p>
-
+        {/* Deletion Functionality*/}        
+        {confirmingDeleteId === project.id ? (
+            <div className="mt-2 flex gap-2">
                 <button
-                  onClick={async () => {
+                onClick={async () => {
                     const { error } = await supabase
-                      .from('projects')
-                      .delete()
-                      .eq('id', project.id)
+                    .from('projects')
+                    .delete()
+                    .eq('id', project.id)
                     if (error) {
-                      console.error(error)
+                        console.error(error)
                     } else {
-                      refreshProjects()
+                        refreshProjects()
+                        setConfirmingDeleteId(null)
                     }
-                  }}
-                  className="text-sm text-red-500 mt-2"
-                >
-                  Delete
-                </button>
-
+                }}
+      className="px-3 py-1 text-sm bg-red-600 text-white rounded">Confirm Delete</button>
+      <button
+        onClick={() => setConfirmingDeleteId(null)}
+        className="px-3 py-1 text-sm bg-gray-400 text-white rounded"
+            >Cancel</button>
+        </div>
+        ) : (
+        <button
+        onClick={() => setConfirmingDeleteId(project.id)}
+        className="text-sm text-red-500 mt-2"
+        >
+            Delete
+            </button>
+    )}  {/* Project Updating Functionality*/}   
                 <button
                   onClick={() => setEditingProject(project)}
                   className="text-sm text-blue-500 ml-4"
