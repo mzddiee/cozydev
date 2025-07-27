@@ -26,10 +26,19 @@ type Note = {
   content: string
 }
 
+type Commit = {
+  sha: string
+  message: string
+  url: string
+  date: string
+  author: string
+}
+
 export default function ProjectDetailPage() {
   const { projectId } = useParams()
   const router = useRouter()
   const supabase = createClient()
+  const [commits, setCommits] = useState<Commit[]>([])
 
   const [project, setProject] = useState<Project | null>(null)
   const [tasks, setTasks] = useState<Task[]>([])
@@ -131,6 +140,30 @@ export default function ProjectDetailPage() {
     setProject(p || null)
   }
 
+    const loadCommits = async () => {
+    const repo = prompt('Enter GitHub repo (owner/repo)')
+    if (!repo) return
+    try {
+      const res = await fetch(
+        `https://api.github.com/repos/${repo}/commits?per_page=5`
+      )
+      if (!res.ok) throw new Error(`GitHub API error: ${res.status}`)
+      const data = await res.json()
+      setCommits(
+        data.map((c: any) => ({
+          sha: c.sha,
+          message: c.commit.message,
+          url: c.html_url,
+          date: c.commit.author.date,
+          author: c.commit.author.name,
+        }))
+      )
+    } catch (err: any) {
+      console.error(err)
+      alert('Failed to load commits: ' + err.message)
+    }
+  }
+
   // Delete the entire project
   const deleteProject = async () => {
     if (!confirm('Are you sure you want to delete this project?')) return
@@ -138,178 +171,271 @@ export default function ProjectDetailPage() {
     router.push('/protected/projects')
   }
 
+    const statusColor: Record<string,string> = {
+      idea:         'bg-[#7632bf]',
+      'in-progress': 'bg-[#d25d23]',
+      complete:     'bg-[#219b2d]',
+    }
+
   if (!project) return <p className="font-pixel p-6">Loading project…</p>
 
   return (
-    <main className="p-6 space-y-8">
-      <h1 className="text-3xl font-bold">{project.title}</h1>
-      <p className="text-muted-foreground">{project.description}</p>
-      <span className="inline-block text-xs italic bg-accent px-2 py-1 rounded">
-        {project.status}
-      </span>
+    <main className="font-pixel p-6 space-y-8 -mt-32">
+      {/*Back Button*/}
+      <button
+        onClick={() => router.back()}
+        className="text-sm text-white] hover:underline"
+        >
+        </button>
+      <h1 className="text-6xl">{project.title}</h1>
+      <p className="text-muted bg-[#6ab4da] rounded-lg p-2">{project.description}</p>
+      <span
+      className={`inline-block text-xs italic px-2 py-1 rounded
+        ${statusColor[project.status] ?? 'bg-gray-500'}
+  `}
+>
+  {project.status.replace('-', ' ')}
+</span>
 
-      {/* Settings Panel */}
-      <section className="border p-4 rounded space-x-4">
-        {editingProject?.id === project.id ? (
-          <>
-            <input
-              className="p-2 border rounded"
-              value={editedProject.title}
-              onChange={e => setEditedProject({ ...editedProject, title: e.target.value })}
-            />
-            <textarea
-              className="p-2 border rounded"
-              value={editedProject.description}
-              onChange={e => setEditedProject({ ...editedProject, description: e.target.value })}
-            />
-            <select
-              className="p-2 border rounded"
-              value={editedProject.status}
-              onChange={e => setEditedProject({ ...editedProject, status: e.target.value })}
-            >
-              <option value="idea">Idea</option>
-              <option value="in-progress">In Progress</option>
-              <option value="complete">Complete</option>
-            </select>
-            <button className="px-3 py-1 bg-green-600 text-white rounded" onClick={saveProjectEdits}>
-              Save
-            </button>
-            <button className="px-3 py-1 bg-gray-400 text-white rounded" onClick={() => setEditingProject(null)}>
-              Cancel
-            </button>
-          </>
-        ) : (
-          <>
-            <button className="px-3 py-1 bg-blue-600 text-white rounded" onClick={() => {
-              setEditingProject(project)
-              setEditedProject({
-                title: project.title,
-                description: project.description,
-                status: project.status,
-              })
-            }}>
-              Edit Project
-            </button>
-            <button className="px-3 py-1 bg-red-600 text-white rounded" onClick={deleteProject}>
-              Delete Project
-            </button>
-          </>
-        )}
-      </section>
+{/* Settings Panel */}
+<section className="font-pixel p-4 rounded space-x-4">
+  {editingProject?.id === project.id ? (
+    <>
+      {/* Save */}
+      <button
+        onClick={saveProjectEdits}
+        className="
+          py-2 px-4 
+          bg-[url('/icons/save-bg.png')] bg-cover bg-center bg-no-repeat 
+          text-white font-pixel rounded-lg
+        "
+      >
+        Save
+      </button>
 
-      {/* Task Manager */}
-      <section className="space-y-4">
-        <h2 className="text-2xl font-semibold">Tasks</h2>
-        <div className="flex gap-2">
+      {/* Cancel */}
+      <button
+        onClick={() => setEditingProject(null)}
+        className="
+          py-2 px-4 
+          bg-[url('/icons/cancel-bg.png')] bg-cover bg-center bg-no-repeat 
+          text-white font-pixel rounded-lg
+        "
+      >
+        Cancel
+      </button>
+    </>
+  ) : (
+    <>
+      {/* Edit Project */}
+      <button
+        onClick={() => {
+          setEditingProject(project)
+          setEditedProject({
+            title: project.title,
+            description: project.description,
+            status: project.status,
+          })
+        }}
+        className="
+          py-8 px-8 
+          bg-[url('/images/buttonstyle4.png')] bg-cover bg-center bg-no-repeat 
+          text-black font-bold font-pixel rounded-lg
+        "
+      >
+        Edit Project
+      </button>
+
+      {/* Delete Project */}
+      <button
+        onClick={deleteProject}
+        className="
+          py-8 px-6 
+          bg-[url('/images/buttonstyle3.png')] bg-cover bg-center bg-no-repeat 
+          text-black font-bold font-pixel rounded-lg
+        "
+      >
+        Delete Project
+      </button>
+    </>
+  )}
+</section>
+
+
+
+{/* Task Manager */}
+<section
+  className="
+    relative
+    rounded-lg
+    bg-[url('/images/blankback.png')] w-[571px] h-[310px]
+    bg-cover bg-no-repeat bg-center
+  "
+>
+  <div className="relative p-4 space-y-2">
+    <h2 className="text-2xl font-semibold">Tasks</h2>
+    <div className="flex gap-1 mb-2">
+      <input
+        className="border p-1 text-sm rounded flex-1"
+        placeholder="Task title"
+        value={newTask.title}
+        onChange={e => setNewTask({ ...newTask, title: e.target.value })}
+      />
+      <input
+        type="date"
+        className="border p-1 text-sm rounded w-24"
+        value={newTask.due_date}
+        onChange={e => setNewTask({ ...newTask, due_date: e.target.value })}
+      />
+      <select
+        className="border p-1 text-sm rounded w-24"
+        value={newTask.status}
+        onChange={e => setNewTask({ ...newTask, status: e.target.value })}
+      >
+        <option value="todo">To Do</option>
+        <option value="in-progress">In Progress</option>
+        <option value="done">Done</option>
+      </select>
+      <button
+        className="bg-green-600 text-white px-2 py-1 text-sm rounded"
+        onClick={addTask}
+      >
+        Add
+      </button>
+    </div>
+
+    <ul className="space-y-2">
+      {tasks.map(t => (
+        <li key={t.id} className="flex items-center gap-2">
           <input
-            className="border p-2 rounded flex-1"
-            placeholder="Task title"
-            value={newTask.title}
-            onChange={e => setNewTask({ ...newTask, title: e.target.value })}
+            type="checkbox"
+            className="w-4 h-4"
+            checked={t.status === 'done'}
+            onChange={async () => {
+              const newStatus = t.status === 'done' ? 'todo' : 'done'
+              await supabase
+                .from('tasks')
+                .update({ status: newStatus })
+                .eq('id', t.id)
+              setTasks(tasks.map(x =>
+                x.id === t.id ? { ...x, status: newStatus } : x
+              ))
+            }}
           />
-          <input
-            type="date"
-            className="border p-2 rounded"
-            value={newTask.due_date}
-            onChange={e => setNewTask({ ...newTask, due_date: e.target.value })}
-          />
-          <select
-            className="border p-2 rounded"
-            value={newTask.status}
-            onChange={e => setNewTask({ ...newTask, status: e.target.value })}
+          <span
+            className={`flex-1 font-pixel ${
+              t.status === 'done'
+                ? 'line-through text-gray-500'
+                : 'text-black'
+            }`}
           >
-            <option value="todo">To Do</option>
-            <option value="in-progress">In Progress</option>
-            <option value="done">Done</option>
-          </select>
-          <button className="bg-green-600 text-white px-3 py-1 rounded" onClick={addTask}>
-            Add
-          </button>
-        </div>
-        <ul className="space-y-2">
-          {tasks.map(t => (
-            <li key={t.id} className="flex items-center gap-4">
-              <input
-                type="checkbox"
-                checked={t.status === 'done'}
-                onChange={async () => {
-                  const newStatus = t.status === 'done' ? 'todo' : 'done'
-                  await supabase.from('tasks').update({ status: newStatus }).eq('id', t.id)
-                  setTasks(tasks.map(x => x.id === t.id ? { ...x, status: newStatus } : x))
-                }}
-              />
-              <span>{t.title} (due {t.due_date})</span>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Timeline */}
-      <section>
-        <h2 className="text-2xl font-semibold">Timeline</h2>
-        <ul className="space-y-1">
-          {tasks.map(t => (
-            <li key={t.id} className="flex justify-between">
-              <span>{t.title}</span>
-              <span>{t.due_date}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
+            {t.title} (due {t.due_date})
+          </span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
 
       {/* GitHub Commits */}
-      <section>
-        <h2 className="font-pixel text-2xl">GitHub Activity</h2>
+      <section className="space-y-2">
+        <h2 className="text-2xl font-pixel">GitHub Activity</h2>
         <button
-          className="font-pixel bg-gray-800 text-white px-3 py-1 rounded"
-          onClick={async () => {
-            const repo = prompt('Enter GitHub repo (user/repo)')
-            if (!repo) return
-            const res = await fetch(`https://api.github.com/repos/${repo}/commits?per_page=5`)
-            const commits = await res.json()
-            console.log('Recent commits:', commits)
-          }}
+          className="bg-gray-800 text-white px-3 py-1 rounded font-pixel"
+          onClick={loadCommits}
         >
           Load Commits
         </button>
+
+        {commits.length > 0 && (
+          <ul className="mt-4 space-y-2 font-pixel">
+            {commits.map((c) => (
+              <li key={c.sha}>
+                <a
+                  href={c.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-purple-500 text-base font-bold underline"
+                >
+                  {c.message}
+                </a>
+                <div className="text-black font-bold text-base">
+                  by {c.author} on{' '}
+                  {new Date(c.date).toLocaleString()}
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
 
-      {/* Sticky Notes */}
-      <section className="space-y-4">
-        <h2 className="font-pixel text-2xl">Notes</h2>
-        {/* Add Note */}
-        <div className="flex gap-2">
-          <textarea
-            className="font-pixel border p-2 rounded flex-1"
-            placeholder="Write a note..."
-            value={newNote}
-            onChange={e => setNewNote(e.target.value)}
-          />
-          <button className="font-pixel bg-blue-600 text-white px-3 py-1 rounded" onClick={addNote}>
-            Add Note
-          </button>
+{/* Timeline & Sticky Notes Side‑by‑Side */}
+<div className="flex flex-col md:flex-row gap-8">
+  {/* --- Vertical Timeline (Left) --- */}
+  <section className="flex-1 bg-sky-200/50 p-4 rounded-lg">
+    <h2 className="text-2xl text-[#1a2242] font-semibold mb-4">Timeline</h2>
+    <div className="relative border-l-2 border-[#1a2242] pl-6 space-y-6">
+      {tasks.map(t => (
+        <div key={t.id} className="relative">
+          {/* dot */}
+          <div className="absolute -left-4 top-1.5 w-3 h-3 bg-purple-500 p-1 rounded-full"></div>
+          <p className="font-semibold text-[#1a2242]">{t.title}</p>
+          <p className="text-sm text-[#1a2242]">Due: {t.due_date}</p>
         </div>
+      ))}
+    </div>
+  </section>
 
-        {/* Note List */}
-        <ul className="space-y-2">
-          {notes.map(n => (
-            <li key={n.id} className="relative border p-2 rounded text-black bg-purple-100">
-              
-              {/* Delete Button */}
-              <button
-              onClick={() => deleteNote(n.id)}
-              className="absolute top-1 right-1 text-gray-600 hover:text-gray-900">
-                <X size={16} />
-                </button>
+  {/* --- Sticky Notes (Right) --- */}
+  <section
+    className="
+      w-full md:w-80
+      relative 
+      bg-[url('/images/blankback.png')] bg-cover bg-center 
+      rounded-lg overflow-hidden 
+      p-4
+      space-y-4
+      font-pixel
+    "
+  >
+    <h2 className="text-2xl">Notes</h2>
+    {/* Add Note */}
+    <div className="flex gap-2">
+      <textarea
+        className="flex-1 border p-2 rounded bg-white/80"
+        placeholder="Write a note..."
+        value={newNote}
+        onChange={e => setNewNote(e.target.value)}
+      />
+      <button
+        className="bg-blue-600 text-white px-3 py-1 rounded"
+        onClick={addNote}
+      >
+        Add Note
+      </button>
+    </div>
+    {/* Note List */}
+    <ul className="space-y-2">
+      {notes.map(n => (
+        <li
+          key={n.id}
+          className="relative border p-2 rounded text-black bg-purple-100"
+        >
+          <button
+            onClick={() => deleteNote(n.id)}
+            className="absolute top-1 right-1 text-gray-600 hover:text-gray-900"
+          >
+            <X size={16} />
+          </button>
+          <div className="whitespace-pre-wrap">
+            {n.content}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+</div>
 
-              {/* Note Content */}
-              <div className = "whitespace-pre-wrap">
-                {n.content}
-              </div>
-            </li>
-          ))}
-        </ul>
-      </section>
     </main>
   )
 }

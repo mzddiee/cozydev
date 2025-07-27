@@ -140,32 +140,50 @@ export default function ProjectsPage() {
         </div>
       )}
 
+{/* Projects Grid with colored status tags */}
 <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
-  {projects?.map(project => (
-    <li key={project.id}>
-      <Link
-        href={`/protected/projects/${project.id}`}
-        className="
-          w-40 h-20 
-          flex items-center justify-between 
-          p-6 rounded-lg 
-          hover:shadow-lg transition
-        "
-        style={{
-          backgroundImage: `url('/images/buttonstyleR.png')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
-        <h2 className="text-xl font-pixel truncate">
-          {project.title}
-        </h2>
-        <span className="text-xs font-pixel italic bg-accent px-2 py-1 rounded">
-          {project.status}
-        </span>
-      </Link>
-    </li>
-  ))}
+  {projects?.map(project => {
+    // Define your color map
+    const statusColor: Record<string,string> = {
+      idea:         'bg-[#7632bf]',
+      'in-progress': 'bg-[#d25d23]',
+      complete:     'bg-[#219b2d]',
+    }
+
+    return (
+      <li key={project.id}>
+        <Link
+          href={`/protected/projects/${project.id}`}
+          className="
+            w-40 h-20 
+            flex items-center justify-between 
+            p-6 rounded-lg 
+            hover:shadow-lg transition
+          "
+          style={{
+            backgroundImage: `url('/images/buttonstyleR.png')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
+          <h2 className="text-xl font-pixel truncate">
+            {project.title}
+          </h2>
+
+          {/*Apply the class based on status */}
+          <span
+            className={`
+              text-xs font-pixel italic 
+              px-2 py-1 rounded
+              ${statusColor[project.status] ?? 'bg-gray-500'}
+            `}
+          >
+            {project.status.replace('-', ' ')}
+          </span>
+        </Link>
+      </li>
+    )
+  })}
 </ul>
 
       {/* Loading / Empty states */}
