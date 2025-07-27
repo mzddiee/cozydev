@@ -138,7 +138,7 @@ export default function ProjectDetailPage() {
     router.push('/protected/projects')
   }
 
-  if (!project) return <p className="p-6">Loading project…</p>
+  if (!project) return <p className="font-pixel p-6">Loading project…</p>
 
   return (
     <main className="p-6 space-y-8">
@@ -259,9 +259,9 @@ export default function ProjectDetailPage() {
 
       {/* GitHub Commits */}
       <section>
-        <h2 className="text-2xl font-semibold">GitHub Activity</h2>
+        <h2 className="font-pixel text-2xl">GitHub Activity</h2>
         <button
-          className="bg-gray-800 text-white px-3 py-1 rounded"
+          className="font-pixel bg-gray-800 text-white px-3 py-1 rounded"
           onClick={async () => {
             const repo = prompt('Enter GitHub repo (user/repo)')
             if (!repo) return
@@ -276,16 +276,16 @@ export default function ProjectDetailPage() {
 
       {/* Sticky Notes */}
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold">Notes</h2>
+        <h2 className="font-pixel text-2xl">Notes</h2>
         {/* Add Note */}
         <div className="flex gap-2">
           <textarea
-            className="border p-2 rounded flex-1"
+            className="font-pixel border p-2 rounded flex-1"
             placeholder="Write a note..."
             value={newNote}
             onChange={e => setNewNote(e.target.value)}
           />
-          <button className="bg-blue-600 text-white px-3 py-1 rounded" onClick={addNote}>
+          <button className="font-pixel bg-blue-600 text-white px-3 py-1 rounded" onClick={addNote}>
             Add Note
           </button>
         </div>

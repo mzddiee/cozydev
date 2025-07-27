@@ -85,7 +85,12 @@ export default function ProjectsPage() {
     <div className="p-6">
       {/* New Project Toggle */}
       <button
-        className="mb-6 px-4 py-2 bg-muted text-white rounded"
+        className="mb-6 w-40 h-20 px-4 py-2 font-pixel text-white rounded"
+          style={{
+          backgroundImage: "url('/images/buttonstyle3.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          }}
         onClick={() => setShowForm(!showForm)}
       >
         {showForm ? 'Cancel' : '+ New Project'}
@@ -93,10 +98,22 @@ export default function ProjectsPage() {
 
       {/* New Project Form */}
       {showForm && (
-        <div className="mb-8 p-4 border rounded max-w-xl">
-          <h3 className="font-semibold mb-3">Create a New Project</h3>
+  <div
+        className="
+      relative
+      w-[600px] h-[600px]
+      bg-cover
+      bg-no-repeat
+      bg-center
+      rounded-lg
+      p-8
+    "
+    style={{backgroundImage: "url('/images/blankbackground.png')",
+    }}
+  >
+          <h3 className="font-pixel mb-3 text-3xl">Create a New Project:</h3>
           <input
-            className="w-full p-2 mb-2 border rounded"
+            className=" bg-[#6f5040] font-pixel w-full p-2 mb-2 text-white placeholder-white rounded"
             placeholder="Title"
             value={newProject.title}
             onChange={e =>
@@ -104,7 +121,7 @@ export default function ProjectsPage() {
             }
           />
           <textarea
-            className="w-full p-2 mb-2 border rounded"
+            className="bg-[#6f5040] font-pixel text-white placeholder-white w-full p-2 mb-2 rounded"
             placeholder="Description"
             value={newProject.description}
             onChange={e =>
@@ -112,7 +129,7 @@ export default function ProjectsPage() {
             }
           />
           <select
-            className="w-full p-2 mb-4 border rounded"
+            className="bg-[#6f5040] font-pixel text-white placeholder-white w-full p-2 mb-4 rounded"
             value={newProject.status}
             onChange={e =>
               setNewProject({ ...newProject, status: e.target.value })
@@ -124,35 +141,46 @@ export default function ProjectsPage() {
           </select>
           <button
             onClick={handleCreateProject}
-            className="px-4 py-2 bg-secondary text-white rounded"
+            className="font-pixel px-4 py-2 bg-[#281c16] text-white rounded"
           >
             Create Project
           </button>
         </div>
       )}
 
-      {/* Projects Grid */}
-      <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {projects?.map(project => (
-          <li key={project.id}>
-            <Link
-              href={`/protected/projects/${project.id}`}
-              className="block p-6 bg-muted rounded-lg hover:shadow-lg transition"
-            >
-              <h2 className="text-xl font-semibold mb-2">{project.title}</h2>
-              <p className="text-sm mb-4 line-clamp-3">{project.description}</p>
-              <span className="inline-block text-xs italic bg-accent px-2 py-1 rounded">
-                {project.status}
-              </span>
-            </Link>
-          </li>
-        ))}
-      </ul>
+<ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
+  {projects?.map(project => (
+    <li key={project.id}>
+      <Link
+        href={`/protected/projects/${project.id}`}
+        className="
+          w-40 h-20 
+          flex items-center justify-between 
+          p-6 rounded-lg 
+          hover:shadow-lg transition
+        "
+        style={{
+          backgroundImage: `url('/images/buttonstyleR.png')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <h2 className="text-xl font-pixel truncate">
+          {project.title}
+        </h2>
+        <span className="text-xs font-pixel italic bg-accent px-2 py-1 rounded">
+          {project.status}
+        </span>
+      </Link>
+    </li>
+  ))}
+</ul>
 
       {/* Loading / Empty states */}
       {!projects && <p className="mt-4">Loading projects…</p>}
       {projects && projects.length === 0 && (
-        <p className="mt-4 italic">No projects yet. Create one!</p>
+        <p className="font-pixel justify-center text-2xl mt-4">No projects yet. Create one!</p>
+        
       )}
     </div>
   )
