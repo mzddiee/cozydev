@@ -49,19 +49,28 @@ export function LoginForm({
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
+      <Card
+        className={cn(
+          "relative overflow-hidden rounded-lg",
+          "bg-transparent",
+          "bg-[url('/images/blankbackground.png')]",
+          "bg-cover bg-center",
+          "border-none shadow-none p-8 w-[400px]"
+        )}
+      >
         <CardHeader>
-          <CardTitle className="text-2xl">Login</CardTitle>
-          <CardDescription>
+          <CardTitle className="font-pixel text-2xl">Login</CardTitle>
+          <CardDescription className="font-pixel text-white">
             Enter your email below to login to your account
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleLogin}>
-            <div className="flex flex-col gap-6">
+            <div className="font-pixel flex flex-col gap-6">
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
+                  className="bg-[#6f5040] text-white placeholder-white"
                   id="email"
                   type="email"
                   placeholder="m@example.com"
@@ -71,7 +80,7 @@ export function LoginForm({
                 />
               </div>
               <div className="grid gap-2">
-                <div className="flex items-center">
+                <div className="font-pixel flex items-center">
                   <Label htmlFor="password">Password</Label>
                   <Link
                     href="/auth/forgot-password"
@@ -81,6 +90,7 @@ export function LoginForm({
                   </Link>
                 </div>
                 <Input
+                  className="bg-[#6f5040]"
                   id="password"
                   type="password"
                   required
@@ -93,7 +103,7 @@ export function LoginForm({
                 {isLoading ? "Logging in..." : "Login"}
               </Button>
             </div>
-            <div className="mt-4 text-center text-sm">
+            <div className="font-pixel mt-4 text-center text-sm">
               Don&apos;t have an account?{" "}
               <Link
                 href="/auth/sign-up"

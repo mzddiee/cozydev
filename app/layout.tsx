@@ -1,10 +1,8 @@
+// app/protected/layout.tsx
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
-import SpotifyWidget from "../components/spotify-widget";
-import PinboardPage from '../Forums/pinboards/PinboardPage';
 import "./globals.css";
-import PomodoroTimer from "@/components/Timerwidget";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -24,12 +22,25 @@ const geistSans = Geist({
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.className} antialiased`}>
+      <body
+        className={`${geistSans.className} antialiased relative min-h-screen`}
+      >
+        {/* full‑screen protected‑area background */}
+        <div
+          className="
+            absolute inset-0 
+            -z-10 
+            bg-[url('/images/background.png')] 
+            bg-cover 
+            bg-center
+          "
+        />
+
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -37,10 +48,6 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
-           <div className="fixed bottom-6 right-6 z-50">
-            <PomodoroTimer />
-          </div>
-          <PinboardPage />
         </ThemeProvider>
       </body>
     </html>

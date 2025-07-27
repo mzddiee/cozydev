@@ -58,17 +58,27 @@ export function SignUpForm({
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
+            <Card
+        className={cn(
+          "relative rounded-lg",
+          "bg-transparent",
+          "bg-[url('/images/blankbackground.png')]",
+          "bg-center",
+          "bg-cover bg-no-repeat p-8 w-[400px]",
+          "border-none shadow-none"
+        )}
+      >
         <CardHeader>
-          <CardTitle className="text-2xl">Sign up</CardTitle>
-          <CardDescription>Create a new account</CardDescription>
+          <CardTitle className="font-pixel text-2xl">Sign up</CardTitle>
+          <CardDescription className="font-pixel text-white text-xl">Create a new account</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSignUp}>
-            <div className="flex flex-col gap-6">
-              <div className="grid gap-2">
+            <div className="font-pixel flex flex-col gap-6">
+              <div className="font-pixel grid gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
+                  className="bg-[#6f5040] text-white placeholder-white"
                   id="email"
                   type="email"
                   placeholder="m@example.com"
@@ -78,10 +88,11 @@ export function SignUpForm({
                 />
               </div>
               <div className="grid gap-2">
-                <div className="flex items-center">
+                <div className="font-pixel flex items-center">
                   <Label htmlFor="password">Password</Label>
                 </div>
                 <Input
+                  className="bg-[#6f5040] text-white placeholder-white"
                   id="password"
                   type="password"
                   required
@@ -94,6 +105,7 @@ export function SignUpForm({
                   <Label htmlFor="repeat-password">Repeat Password</Label>
                 </div>
                 <Input
+                  className="bg-[#6f5040] text-white placeholder-white"
                   id="repeat-password"
                   type="password"
                   required
@@ -106,7 +118,7 @@ export function SignUpForm({
                 {isLoading ? "Creating an account..." : "Sign up"}
               </Button>
             </div>
-            <div className="mt-4 text-center text-sm">
+            <div className="font-pixel mt-4 text-center text-sm">
               Already have an account?{" "}
               <Link href="/auth/login" className="underline underline-offset-4">
                 Login

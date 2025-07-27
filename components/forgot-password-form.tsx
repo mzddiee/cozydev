@@ -45,35 +45,45 @@ export function ForgotPasswordForm({
   };
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div className={cn("font-pixel flex flex-col gap-6", className)} {...props}>
       {success ? (
         <Card>
           <CardHeader>
-            <CardTitle className="text-2xl">Check Your Email</CardTitle>
+            <CardTitle className="font-pixel text-2xl">Check Your Email</CardTitle>
             <CardDescription>Password reset instructions sent</CardDescription>
           </CardHeader>
           <CardContent>
-            <p className="text-sm text-muted-foreground">
+            <p className="font-pixel text-sm text-muted-foreground">
               If you registered using your email and password, you will receive
               a password reset email.
             </p>
           </CardContent>
         </Card>
       ) : (
-        <Card>
+            <Card
+        className={cn(
+          "relative rounded-none",
+          "bg-transparent",
+          "bg-[url('/images/blankbackground.png')]",
+          "bg-contain bg-center",
+          "bg-cover bg-no-repeat bg-center p-8",
+          "border-none shadow-none"
+        )}
+      >
           <CardHeader>
-            <CardTitle className="text-2xl">Reset Your Password</CardTitle>
-            <CardDescription>
+            <CardTitle className="font-pixel text-2xl  ">Reset Your Password</CardTitle>
+            <CardDescription className="text-white bg-[#6f5040] rounded-lg p-2">
               Type in your email and we&apos;ll send you a link to reset your
               password
             </CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleForgotPassword}>
-              <div className="flex flex-col gap-6">
+              <div className="font-pixel flex flex-col gap-6">
                 <div className="grid gap-2">
                   <Label htmlFor="email">Email</Label>
                   <Input
+                    className="bg-[#6f5040] placeholder-white"
                     id="email"
                     type="email"
                     placeholder="m@example.com"

@@ -69,7 +69,12 @@
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
+body {
+  background-image: url('/images/background.png');
+  background-size: cover;       /* fill the viewport */
+  background-position: center;  /* keep it centered */
+  background-repeat: no-repeat; /* don’t tile */
+  background-color: rgba(0,0,0,0.3);
+  background-blend-mode: add;
+}
 }

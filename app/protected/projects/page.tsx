@@ -98,15 +98,7 @@ export default function ProjectsPage() {
 
       {/* New Project Form */}
       {showForm && (
-  <div
-        className="
-      relative
-      w-[600px] h-[600px]
-      bg-cover
-      bg-no-repeat
-      bg-center
-      rounded-lg
-      p-8
+  <div className="relative w-[600px] h-[600px] bg-cover bg-no-repeat bg-center rounded-lg p-9
     "
     style={{backgroundImage: "url('/images/blankbackground.png')",
     }}
