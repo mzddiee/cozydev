@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
 
+
 const WORK_DURATION = 25 * 60
 const BREAK_DURATION = 5 * 60
 
@@ -51,7 +52,7 @@ export default function PomodoroTimer() {
         {isBreak ? 'Break Time' : 'Focus Time'}
       </h2>
 
-      <div className="text-6xl mb-6">{formatTime(timeLeft)}</div>
+      <div className="text-6xl mb-6 bg-[#6f5040]/100 rounded-lg h-15 w-30">{formatTime(timeLeft)}</div>
 
       <div className="flex justify-center gap-4">
         {/* Start Button */}

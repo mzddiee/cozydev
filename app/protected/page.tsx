@@ -15,7 +15,7 @@ export default function DashboardHome() {
         />
       </h1>
       <p className="bg-[#6ab4da] rounded-lg font-pixel mb-12 text-lg p-1">
-        Where your ideas, projects, and purpose align.
+        Where your ideas, projects, and creativity are yours.
       </p>
 
       <div className="flex flex-wrap gap-6 justify-center">
