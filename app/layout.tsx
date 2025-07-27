@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
+import PomodoroTimer from "@/components/Timerwidget";
+import SearchWidget from "@/components/Search-widget";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -48,6 +50,12 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+           <div className="fixed bottom-6 right-6 z-50">
+            <PomodoroTimer />
+          </div>
+          <PinboardPage />
+          <SpotifyWidget />
+          <SearchWidget />
         </ThemeProvider>
       </body>
     </html>
