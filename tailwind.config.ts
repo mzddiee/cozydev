@@ -1,6 +1,7 @@
-import type { Config } from "tailwindcss";
+// tailwind.config.ts
+import type { Config } from "tailwindcss"
 
-export default {
+const config: Config = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -10,6 +11,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        pixel: ["'Pixelify Sans'", "sans-serif"],  // use className="font-pixel"
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
@@ -52,6 +56,7 @@ export default {
           "5": "hsl(var(--chart-5))",
         },
       },
+      // 3) Your existing border radii:
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -60,4 +65,6 @@ export default {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config;
+}
+
+export default config

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -56,6 +58,11 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
+}
+
+@font-face {
+    font-family: 'pixel'; /*a name to be used later*/
+    src: url('https://www.1001fonts.com/karma-font.html'); /*URL to font*/
 }
 
 @layer base {
