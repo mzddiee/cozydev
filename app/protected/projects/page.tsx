@@ -189,7 +189,7 @@ export default function ProjectsPage() {
       {/* Loading / Empty states */}
       {!projects && <p className="mt-4">Loading projects…</p>}
       {projects && projects.length === 0 && (
-        <p className="font-pixel justify-center text-2xl mt-4">No projects yet. Create one!</p>
+        <p className="font-pixel text-black justify-center text-2xl mt-4">No projects yet. Create one!</p>
         
       )}
     </div>
