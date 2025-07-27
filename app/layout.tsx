@@ -5,6 +5,7 @@ import SpotifyWidget from "../components/spotify-widget";
 import PinboardPage from '../Forums/pinboards/PinboardPage';
 import "./globals.css";
 import PomodoroTimer from "@/components/Timerwidget";
+import SearchWidget from "@/components/Search-widget";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -41,6 +42,8 @@ export default function RootLayout({
             <PomodoroTimer />
           </div>
           <PinboardPage />
+          <SpotifyWidget />
+          <SearchWidget />
         </ThemeProvider>
       </body>
     </html>
