@@ -1,7 +1,9 @@
 # 🌸CozyDev
 ✨A personalized productivity dashboard for developers to relax, brainstorm, search, and build — all in one cozy tab.
 
-![alt text](/cozydev/public/images/Base.png)
+![alt text](/public/images/Base.png)
+
+## https://cozydev.vercel.app/
 
 ## Features:
 
@@ -40,15 +42,15 @@ Add your Supabase URL and Anon Key:
 NEXT_PUBLIC_SUPABASE_URL=your-url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-key
 
-### 4. Run locally
+#### 4. Run locally
 npm run dev
 
 Open http://localhost:3000/ in your browser 🎉
 
-### 5. Deploy
+#### 5. Deploy
 Deploy instantly with Vercel — auto integrates with Supabase.
 
-### 6.  📄 License??
+#### 6.  📄 License??
 This project is open-sourced under the MIT License.
 
 #### Inspiration & Vision
