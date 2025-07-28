@@ -1,7 +1,7 @@
 # 🌸CozyDev
 ✨A personalized productivity dashboard for developers to relax, brainstorm, search, and build — all in one cozy tab.
 
-[![Home Page](Base.png)](https://cozydev.vercel.app/)
+[![Home Page](./Base.png)](https://cozydev.vercel.app/)
 
 ## https://cozydev.vercel.app/
 
