@@ -1,13 +1,19 @@
 // Main Screen Text
 export function Hero() {
   return (
-    <div className="flex flex-col gap-16 items-center">
-      <div className="flex gap-8 justify-center items-center">
-      </div>
-      <p className="text-3xl lg:text-4xl !leading-tight mx-auto max-w-xl text-center">
-        CozyDev{" "}
+    <div className="flex flex-col items-center justify-center min-h-screen text-center px-4 text-white">
+      <h1 className="font-pixel text-7xl mb-6">Welcome to Cozy Dev{" "}
+        <img
+          src="/images/moon.png"
+          alt="Moon icon"
+          width={128}
+          height={128}
+          className="inline-block ml-2 align-middle"
+        />
+      </h1>
+      <p className="bg-[#6ab4da] rounded-lg font-pixel mb-12 text-lg p-1">
+        Where your ideas, projects, and creativity are yours.
       </p>
-      <div className="w-full p-[1px] bg-gradient-to-r from-transparent via-foreground/10 to-transparent my-8" />
-    </div>
+      </div>
   );
 }
