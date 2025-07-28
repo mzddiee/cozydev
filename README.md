@@ -1,17 +1,18 @@
 🌸 CozyDev
 ✨A personalized productivity dashboard for developers to relax, brainstorm, search, and build — all in one cozy tab.
 
-(Picture)
+![alt text](Base.png)
 
 ✨ Features
 
-🧠 Pomodoro Timer – Stay focused with a simple yet effective timer.
-🔎 Multi-Search Widget – Search across Google, GitHub, Wikipedia, and Stack Overflow.
-📋 Pinboard/Forums– Save notes, links, and todos, ask questions.
-🔐 Local-first – All your data stays on encrypted with Supabase Databases.
-Cozy-inspired layout and pastel themes
+🧠 **Pomodoro Timer** – Stay focused with a simple yet effective timer.
+🔎 **Multi-Search Widget** – Search across Google, GitHub, Wikipedia, and Stack Overflow.
+📋 **Pinboard/Forums**– Save notes, links, and todos, ask questions.
+🛡️ **Secure Database Management** – CozyDev uses Supabase as a powerful open-source backend that handles user authentication and real-time data securely. With Supabase Auth cookies configured via supabase-ssr, user sessions are protected. When deployed with Vercel, environment variables remain encrypted and securely managed in the cloud, ensuring seamless and safe production deployment.
 
-🛠️ Tech Stack
+`` Cozy-inspired layout and pastel themes ``
+
+# 🛠️ Tech Stack
 Next.js
 Supabase
 Tailwind
@@ -50,12 +51,12 @@ This project is open-sourced under the MIT License.
 # Inspiration & Vision
 We wanted to build a space that feels like a quiet café corner for developers:
  Simple tools. Smart features. A cozy vibe. ✨
-Team 
-Maddie, Nagina
+
+__Team:__ 
+*Maddie, Nagina*
 
 # 🙌 Acknowledgments
 Supabase Starter Kit & Vercel templates
 Dave Grays Next.JS Youtube Tutorials
 
-
-CS Girlies Community  💛
+*CS Girlies Community  💛*
