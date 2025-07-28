@@ -13,20 +13,20 @@
 *Search across Google, GitHub, Wikipedia, and Stack Overflow.*
 ### 📋 **Pinboard/Forums**:
 *Save notes, links, and todos, ask questions.*
-## 🛡️ **Secure Database Management**: 
+### 🛡️ **Secure Database Management**: 
 *CozyDev uses Supabase as a powerful open-source backend that handles user authentication and real-time data securely. With Supabase Auth cookies configured via supabase-ssr, user sessions are protected. When deployed with Vercel, environment variables remain encrypted and securely managed in the cloud, ensuring seamless and safe production deployment.*
 
 `` Cozy-inspired layout and pastel themes ``
 
-##### 🛠️ Tech Stack
-Next.js
-Supabase
-Tailwind
-Vercel
-Javascript
-Type Script
-CSS, HTML 
-APIs; Google, StackOverflow, Git Hub 
+### 🛠️ Tech Stack
+- Next.js
+- Supabase
+- Tailwind
+- Vercel
+- Javascript
+- Type Script
+- CSS, HTML 
+- APIs; Google, StackOverflow, Git Hub
 
 ## 🚀 Getting Started
 
