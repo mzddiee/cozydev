@@ -11,7 +11,16 @@ const defaultUrl = process.env.VERCEL_URL
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
   title: "CozyDev 🌙",
-  description: "A personalized productivity dashboard for developers to relax, search, and build — all in one cozy tab.",
+  description:
+    "A personalized productivity dashboard for developers to relax, search, and build — all in one cozy tab.",
+  icons: {
+    // favicon for most browsers
+    icon: "/images/moon.png",
+    // legacy “shortcut icon”
+    shortcut: "/images/moon.png",
+    // apple touch icon for iOS
+    apple: "/images/moon.png",
+  },
 };
 
 const geistSans = Geist({
