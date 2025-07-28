@@ -10,7 +10,7 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "CozyDev 🌙",
+  title: "CozyDev",
   description:
     "A personalized productivity dashboard for developers to relax, search, and build — all in one cozy tab.",
   icons: {
