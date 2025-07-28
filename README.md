@@ -30,6 +30,7 @@
 
 #### 1. Sign up with an account!
 https://cozydev.vercel.app/
+
 ![Home Page](./Signup.PNG)
 
 #### 2. Project Dashboards!
@@ -38,7 +39,7 @@ Create projects, track to-do tasks via a timeline, see latest git commits, stick
 
 #### 3. Cozy Community! [In Progress]
 ![alt text](Forum.PNG)
-Talk to others in the community and post to other cozy coders!
+Soon you will be able to talk to others in the community and post to other cozy coders!
 
 #### 4. Coder Self-Care!
 ![Home Page](./Tools.PNG)
@@ -46,9 +47,8 @@ Take a break with our burnout timer and other widgets!
 
 #### 5. Resources all on one place!
 ![Home Page](./Search.PNG)
-Deploy instantly with Vercel — auto integrates with Supabase.
 
-#####  📄 License??
+#####  📄 License?
 ##### This project is open-sourced under the MIT License.
 
 #### Inspiration & Vision
