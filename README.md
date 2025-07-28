@@ -3,11 +3,9 @@
 
 [![Home Page](./Base.PNG)](https://cozydev.vercel.app/)
 
-## https://cozydev.vercel.app/
-
 ## Features:
 
-### 🧠 **Pomodoro Timer**:
+### 🧠 **Burnout Timer**:
 *Stay focused with a simple yet effective timer.*
 ### 🔎 **Multi-Search Widget**:
 *Search across Google, GitHub, Wikipedia, and Stack Overflow.*
@@ -30,28 +28,23 @@
 
 ## 🚀 Getting Started
 
-#### 1. Clone the repo
-git clone https://github.com/mzddiee/cozydev
+#### 1. Sign up with an account!
+https://cozydev.vercel.app/
  
-#### 2. Install dependencies
-npm install
+#### 2. Project Dashboards!
+Create projects, track to-do tasks via a timeline, see latest git commits, sticky notes, and more!
 
-#### 3. Configure environment
-Create a file .env.local
-Add your Supabase URL and Anon Key:
-NEXT_PUBLIC_SUPABASE_URL=your-url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-key
+#### 3. Cozy Community!
+Talk to others in the community and post to other cozy coders!
 
-#### 4. Run locally
-npm run dev
+#### 4. Coder Self-Care!
 
-Open http://localhost:3000/ in your browser 🎉
-
-#### 5. Deploy
+Take a break with our burnout timer and other widgets!
+#### 5. Resources all on one place!
 Deploy instantly with Vercel — auto integrates with Supabase.
 
-#### 6.  📄 License??
-This project is open-sourced under the MIT License.
+#####  📄 License??
+##### This project is open-sourced under the MIT License.
 
 #### Inspiration & Vision
 We wanted to build a space that feels like a quiet café corner for developers:
