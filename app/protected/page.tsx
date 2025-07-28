@@ -22,7 +22,7 @@ export default function DashboardHome() {
         {/* Projects card */}
         <Link href="/protected/projects">
           <div
-            className="relative w-40 h-20 rounded-lg overflow-hidden shadow-lg cursor-pointer"
+            className="relative w-40 h-20 rounded-lg overflow-hidden cursor-pointer"
             style={{
               backgroundImage: "url('/images/buttonstyleL.png')",
               backgroundSize: 'cover',
@@ -39,7 +39,7 @@ export default function DashboardHome() {
         {/* Resources card */}
         <Link href="/protected/resources">
           <div
-            className="relative w-40 h-20 rounded-lg overflow-hidden shadow-lg cursor-pointer"
+            className="relative w-40 h-20 rounded-lg overflow-hidden cursor-pointer"
             style={{
               backgroundImage: "url('/images/buttonstyleC.png')",
               backgroundSize: 'cover',
@@ -55,7 +55,7 @@ export default function DashboardHome() {
         {/* DevChat card */}
         <Link href="/protected/forum">
           <div
-            className="relative w-40 h-20 rounded-lg overflow-hidden shadow-lg cursor-pointer"
+            className="relative w-40 h-20 rounded-lg overflow-hidden cursor-pointer"
             style={{
               backgroundImage: "url('/images/buttonstyleC.png')",
               backgroundSize: 'cover',
@@ -71,7 +71,7 @@ export default function DashboardHome() {
         {/* Tools card */}
         <Link href="/protected/tools">
           <div
-            className="relative w-40 h-20 rounded-lg overflow-hidden shadow-lg cursor-pointer"
+            className="relative w-40 h-20 rounded-lg overflow-hidden cursor-pointer"
             style={{
               backgroundImage: "url('/images/buttonstyleR.png')",
               backgroundSize: 'cover',
